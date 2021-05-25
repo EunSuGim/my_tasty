@@ -1,0 +1,2 @@
+com/counchcoding/project/domain/categories/CategoriesRepositoryTest.java
+ com.counchcoding.project.domain.categories.CategoriesRepositoryTest
