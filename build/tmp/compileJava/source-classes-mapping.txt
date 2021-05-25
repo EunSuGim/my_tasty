@@ -5,3 +5,10 @@ com/counchcoding/project/domain/categories/CategoriesRepository.java
  com.counchcoding.project.domain.categories.CategoriesRepository
 com/counchcoding/project/Application.java
  com.counchcoding.project.Application
+com/counchcoding/project/web/CategoriesApiController.java
+ com.counchcoding.project.web.CategoriesApiController
+com/counchcoding/project/service/categories/CategoriesService.java
+ com.counchcoding.project.service.categories.CategoriesService
+com/counchcoding/project/web/dto/CategoriesRequestSaveDto.java
+ com.counchcoding.project.web.dto.CategoriesRequestSaveDto
+ com.counchcoding.project.web.dto.CategoriesRequestSaveDto$CategoriesRequestSaveDtoBuilder
