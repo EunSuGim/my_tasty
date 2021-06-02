@@ -20,10 +20,10 @@ public class CategoriesRepositoryTest {
     @Autowired
     CategoriesRepository categoriesRepository;
 
-    @After
-    public void cleanUp(){
-        categoriesRepository.deleteAll();
-    }
+//    @After
+//    public void cleanUp(){
+//        categoriesRepository.deleteAll();
+//    }
 
     @Test
     public void load_categories(){

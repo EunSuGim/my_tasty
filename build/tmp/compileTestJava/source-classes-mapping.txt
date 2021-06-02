@@ -1,4 +1,8 @@
-com/counchcoding/project/domain/categories/CategoriesRepositoryTest.java
- com.counchcoding.project.domain.categories.CategoriesRepositoryTest
 com/counchcoding/project/domain/categories/categoriesApiControllerTest.java
  com.counchcoding.project.domain.categories.categoriesApiControllerTest
+com/counchcoding/project/domain/categories/CategoriesRepositoryTest.java
+ com.counchcoding.project.domain.categories.CategoriesRepositoryTest
+com/counchcoding/project/domain/restaurants/restaurantsApiControllerTest.java
+ com.counchcoding.project.domain.restaurants.restaurantsApiControllerTest
+com/counchcoding/project/domain/restaurants/RestaurantsRepositoryTest.java
+ com.counchcoding.project.domain.restaurants.RestaurantsRepositoryTest

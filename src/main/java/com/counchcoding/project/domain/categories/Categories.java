@@ -1,5 +1,6 @@
 package com.counchcoding.project.domain.categories;
 
+import com.counchcoding.project.web.dto.CategoriesUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class Categories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "categories_id")
     private Long id;
 
     @Column(nullable = false)
@@ -25,6 +27,10 @@ public class Categories {
     public Categories(String name, String code){
         this.name = name;
         this.code = code;
+    }
+
+    public void update(Long id, CategoriesUpdateRequestDto requestDto){
+        this.name = name;
     }
 
 
