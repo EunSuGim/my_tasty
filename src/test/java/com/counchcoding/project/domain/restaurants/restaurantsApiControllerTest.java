@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.sound.midi.Soundbank;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -103,7 +105,80 @@ public class restaurantsApiControllerTest {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(allRestaurants.size()).isEqualTo(0);
 
+    }
+
+    @Test
+    public void restaurants_findSearch_test(){
+        String name = "store";
+        String address = "suwon";
+        Date visit_date = new Date();
+        float star_rate = 3.5f;
+        String memo = null;
+        Categories categories_id = Categories.builder()
+                .name("한식")
+                .code("KOR")
+                .build();
+
+        restaurantsRepository.save(Restaurants.builder()
+                .name(name)
+                .address(address)
+                .visit_date(visit_date)
+                .star_rate(star_rate)
+                .memo(memo)
+                .category_id(categories_id)
+                .build());
+
+
+        String url = "http://localhost:" + port
+                + "/api/v1/restaurants/"+name;
+
+
+        ResponseEntity<Restaurants[]> responseEntity =
+                testRestTemplate.getForEntity(url,Restaurants[].class);
+
+
+
+//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        assertThat(responseEntity.getBody().getName()).isEqualTo(name);
+//        assertThat(responseEntity.getBody().getAddress()).isEqualTo(address);
+    }
+
+    @Test
+    public void restaurants_findAll_test(){
+        String name = "store";
+        String address = "suwon";
+        Date visit_date = new Date();
+        float star_rate = 3.5f;
+        String memo = null;
+        Categories categories_id = Categories.builder()
+                .name("한식")
+                .code("KOR")
+                .build();
+
+        restaurantsRepository.save(Restaurants.builder()
+                .name(name)
+                .address(address)
+                .visit_date(visit_date)
+                .star_rate(star_rate)
+                .memo(memo)
+                .category_id(categories_id)
+                .build());
+
+
+        String url = "http://localhost:" + port
+                + "/api/v1/restaurants";
+
+        ResponseEntity<Restaurants[]> responseEntity =
+                testRestTemplate.getForEntity(url,Restaurants[].class);
+
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Restaurants restaurants = Arrays.asList(responseEntity.getBody()).get(0);
+
+        assertThat(restaurants.getName()).isEqualTo(name);
 
     }
+
+
 
 }
