@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,6 +32,7 @@ public class restaurantsApiControllerTest {
 
     @Autowired
     private RestaurantsRepository restaurantsRepository;
+
 
     @Test
     public void restaurants_enroll_test(){
@@ -65,6 +68,41 @@ public class restaurantsApiControllerTest {
 
         assertThat(restaurantsList.get(0).getName()).isEqualTo(name);
         assertThat(restaurantsList.get(0).getStar_rate()).isEqualTo(star_rate);
+
+    }
+
+    @Test
+    public void restaurants_delete_test(){
+        String name = "자연식당";
+        String address = "주소";
+        Date visit_date = new Date();
+        float star_rate = 3.5f;
+        String memo = null;
+        Categories categories_id = Categories.builder()
+                .name("한식")
+                .code("KOR")
+                .build();
+
+        Long removeId = restaurantsRepository.save(Restaurants.builder()
+                .name(name)
+                .address(address)
+                .visit_date(visit_date)
+                .star_rate(star_rate)
+                .memo(memo)
+                .category_id(categories_id)
+                .build()).getId();
+
+        String url = "http://localhost:" + port
+                + "/api/v1/restaurants/"+removeId;
+
+        ResponseEntity<Long> responseEntity = testRestTemplate
+                .exchange(url, HttpMethod.DELETE, new HttpEntity<>(removeId), Long.class);
+
+        List<Restaurants> allRestaurants = restaurantsRepository.findAll();
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(allRestaurants.size()).isEqualTo(0);
+
 
     }
 

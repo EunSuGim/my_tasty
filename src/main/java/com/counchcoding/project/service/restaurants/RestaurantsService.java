@@ -5,6 +5,7 @@ import com.counchcoding.project.domain.restaurants.RestaurantsRepository;
 import com.counchcoding.project.web.dto.RestaurantsRequestSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -13,6 +14,14 @@ public class RestaurantsService {
 
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
         return restaurantsRepository.save(requestSaveDto.toEntity()).getId();
+    }
+
+    @Transactional
+    public void delete(long id){
+        Restaurants restaurants =
+                restaurantsRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 가게가 없습니다."));
+        restaurantsRepository.delete(restaurants);
     }
 
 }
