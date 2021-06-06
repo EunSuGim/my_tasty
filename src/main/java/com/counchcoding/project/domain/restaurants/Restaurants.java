@@ -1,17 +1,20 @@
 package com.counchcoding.project.domain.restaurants;
 
+import com.counchcoding.project.domain.BaseTimeEntity;
 import com.counchcoding.project.domain.categories.Categories;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Restaurants {
+public class Restaurants extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,25 +30,21 @@ public class Restaurants {
 
     @Column(nullable = false)
     private String address;
-//
+
     @Column(nullable = false)
     private float star_rate;
-//
+
+    //ToDo: 날짜만 표기여서 LocalDate
     @Column(nullable = false)
-    private Date visit_date;
-//
+    private LocalDate visit_date;
+
     @Column(nullable = true)
     private String memo;
-//
-//    @Column(nullable = true)
-//    private Date reg_date;
-//
-//    @Column(nullable = true)
-//    private Date mod_date;
+
 
     @Builder
     public Restaurants
-            (String name, String address, Date visit_date,
+            (String name, String address, LocalDate visit_date,
              float star_rate,Categories category_id, String memo){
         this.name = name;
         this.address = address;

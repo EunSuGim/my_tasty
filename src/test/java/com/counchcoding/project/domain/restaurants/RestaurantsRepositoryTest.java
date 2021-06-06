@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class RestaurantsRepositoryTest {
     public void load_restaurants(){
         String name = "자연식당";
         String address = "주소";
-        Date visit_date = new Date();
+        LocalDate visit_date = LocalDate.now();
         float star_rate = 2.5F;
 
 

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -13,14 +14,14 @@ import java.util.Date;
 public class RestaurantsRequestSaveDto {
     private String name;
     private String address;
-    private Date visit_date;
+    private LocalDate visit_date;
     private float star_rate;
     private String memo;
     private Categories categories_id;
 
     @Builder
     public RestaurantsRequestSaveDto
-            (String name, String address, Date visit_date,
+            (String name, String address, LocalDate visit_date,
              float star_rate, Categories categories_id, String memo)
     {
         this.name = name;

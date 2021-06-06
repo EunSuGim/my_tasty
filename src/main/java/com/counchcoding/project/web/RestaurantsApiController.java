@@ -28,24 +28,23 @@ public class RestaurantsApiController {
         restaurantsService.delete(id);
     }
 
-    @GetMapping("/api/v1/restaurants/{search}")
-    public List<Restaurants> findRestaurants(@PathVariable String search){
-        List<Restaurants> restaurantsList = restaurantsService.findAll();
-        List<Restaurants> search_restaurantsList = null;
-
-        for(Restaurants res : restaurantsList){
-            if(res.getName().equals(search)){
-                search_restaurantsList.add(res);
-            }else if(res.getAddress().equals(search)){
-                search_restaurantsList.add(res);
-            }
-
-        }
-        return search_restaurantsList;
+    //ToDo: 가게이름 및 주소 검색
+    @GetMapping("/api/v1/restaurants/")
+    public List<Restaurants> findByNameOrAddress(
+            @RequestParam(value="name", required = false) String name,
+            @RequestParam(value = "address", required = false) String address)
+    {
+        return restaurantsService.findByNameOrAddress(name, address);
     }
+
     @GetMapping("/api/v1/restaurants")
     public List<Restaurants> findAll(){
         return restaurantsService.findAll();
+    }
+
+    @GetMapping("/api/v1/restaurants/{id}")
+    public Restaurants findById(@PathVariable Long id){
+        return restaurantsService.findById(id);
     }
 
 //    @PutMapping("/api/v1/restaurants/{id}")

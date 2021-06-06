@@ -31,6 +31,16 @@ public class RestaurantsService {
 
     }
 
+    public Restaurants findById(long id){
+        Restaurants restaurants =
+                restaurantsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 가게가 없습니다."));
+        return restaurants;
+    }
+
+    public List<Restaurants> findByNameOrAddress(String name, String address){
+        return restaurantsRepository.findByNameOrAddress(name, address);
+    }
+
 
 
 
