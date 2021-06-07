@@ -14,6 +14,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import javax.sound.midi.Soundbank;
 import java.time.LocalDate;
@@ -133,9 +135,14 @@ public class restaurantsApiControllerTest {
         String url = "http://localhost:" + port
                 + "/api/v1/restaurants/";
 
+        MultiValueMap<String,String> parameters = new LinkedMultiValueMap<String,String>();
+
+        parameters.add("name",name);
+//        parameters.add("address",address);
+
 
         ResponseEntity<Restaurants[]> responseEntity =
-                testRestTemplate.getForEntity(url,Restaurants[].class,name);
+                testRestTemplate.getForEntity(url,Restaurants[].class,parameters);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
