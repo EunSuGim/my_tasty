@@ -19,8 +19,14 @@ public class RestaurantsUpdateRequestDto {
     String memo = null;
 
     @Builder
-    public RestaurantsUpdateRequestDto(String name){
+    public RestaurantsUpdateRequestDto(
+            String name, String address, LocalDate visit_date,
+            float star_rate, String memo){
         this.name = name;
+        this.address = address;
+        this.visit_date = visit_date;
+        this.star_rate = star_rate;
+        this.memo = memo;
     }
 
 }

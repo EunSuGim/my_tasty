@@ -32,6 +32,7 @@ public class Categories {
     public void update(Long id, CategoriesUpdateRequestDto requestDto){
 
         this.name = requestDto.getName();
+
     }
 
 
