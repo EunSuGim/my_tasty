@@ -30,7 +30,8 @@ public class Categories {
     }
 
     public void update(Long id, CategoriesUpdateRequestDto requestDto){
-        this.name = name;
+
+        this.name = requestDto.getName();
     }
 
 

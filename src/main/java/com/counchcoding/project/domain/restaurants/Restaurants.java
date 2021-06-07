@@ -2,6 +2,7 @@ package com.counchcoding.project.domain.restaurants;
 
 import com.counchcoding.project.domain.BaseTimeEntity;
 import com.counchcoding.project.domain.categories.Categories;
+import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,6 +53,10 @@ public class Restaurants extends BaseTimeEntity {
         this.star_rate = star_rate;
         this.category_id = category_id;
         this.memo = memo;
+    }
+
+    public void update(Long id, RestaurantsUpdateRequestDto requestDto){
+        this.name = requestDto.getName();
     }
 
 }

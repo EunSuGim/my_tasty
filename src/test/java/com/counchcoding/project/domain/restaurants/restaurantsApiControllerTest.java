@@ -3,6 +3,7 @@ package com.counchcoding.project.domain.restaurants;
 import com.counchcoding.project.Application;
 import com.counchcoding.project.domain.categories.Categories;
 import com.counchcoding.project.web.dto.RestaurantsRequestSaveDto;
+import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -213,6 +214,52 @@ public class restaurantsApiControllerTest {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody().getName()).isEqualTo(name);
         assertThat(responseEntity.getBody().getStar_rate()).isEqualTo(star_rate);
+
+    }
+
+    //ToDo: 업데이트 test메소드
+    @Test
+    public void restaurants_update_test(){
+        //기본 Restaurants 컬럼 선언
+        String name = "store";
+        String address = "suwon";
+        LocalDate visit_date = LocalDate.now();
+        float star_rate = 3.5f;
+        String memo = null;
+        Categories categories_id = Categories.builder()
+                .name("한식")
+                .code("KOR")
+                .build();
+
+        Restaurants restaurants =
+                restaurantsRepository.save(Restaurants.builder()
+                        .name(name)
+                        .address(address)
+                        .visit_date(visit_date)
+                        .star_rate(star_rate)
+                        .memo(memo)
+                        .category_id(categories_id)
+                        .build());
+
+        Long updateId = restaurants.getId();
+
+        String expectedName = "내가게";
+
+        RestaurantsUpdateRequestDto updateRequestDto =
+                RestaurantsUpdateRequestDto.builder()
+                        .name(expectedName)
+                        .build();
+
+        String url = "http://localhost:" + port + "/api/v1/restaurants/" + updateId;
+
+        ResponseEntity<Long> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.PUT, new HttpEntity<>(updateRequestDto), Long.class);
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isGreaterThan(0L);
+
+        List<Restaurants> all = restaurantsRepository.findAll();
+        assertThat(all.get(0).getName()).isEqualTo(expectedName);
 
     }
 

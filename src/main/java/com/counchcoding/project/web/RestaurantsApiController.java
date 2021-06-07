@@ -4,6 +4,7 @@ package com.counchcoding.project.web;
 import com.counchcoding.project.domain.restaurants.Restaurants;
 import com.counchcoding.project.service.restaurants.RestaurantsService;
 import com.counchcoding.project.web.dto.RestaurantsRequestSaveDto;
+import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,10 @@ public class RestaurantsApiController {
         return restaurantsService.findById(id);
     }
 
-//    @PutMapping("/api/v1/restaurants/{id}")
-//    public Long update(@PathVariable Long id, @RequestBody)
+    //ToDo: Restaurants 업데이트 메소드
+    @PutMapping("/api/v1/restaurants/{id}")
+    public Long update(@PathVariable Long id, @RequestBody RestaurantsUpdateRequestDto requestDto){
+        return restaurantsService.update(id,requestDto);
+    }
 
 }
