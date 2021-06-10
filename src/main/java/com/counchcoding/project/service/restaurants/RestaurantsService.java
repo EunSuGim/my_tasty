@@ -26,6 +26,10 @@ public class RestaurantsService {
         return restaurantsRepository.save(requestSaveDto.toEntity(categories)).getId();
     }
 
+    /**
+     *
+     * @param id
+     */
     @Transactional
     public void delete(long id){
         Restaurants restaurants =
@@ -34,6 +38,12 @@ public class RestaurantsService {
         restaurantsRepository.delete(restaurants);
     }
 
+    /**
+     *
+     * @param name
+     * @param address
+     * @return
+     */
     public List<Restaurants> getList(String name, String address){
 
         if(!Objects.isNull(name)){
@@ -47,14 +57,23 @@ public class RestaurantsService {
 
     }
 
-
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Restaurants findById(long id){
         Restaurants restaurants =
                 restaurantsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 가게가 없습니다."));
         return restaurants;
     }
 
-
+    /**
+     *
+     * @param id
+     * @param requestDto
+     * @return
+     */
     @Transactional
     public Long update(Long id, RestaurantsUpdateRequestDto requestDto){
         Restaurants restaurants =

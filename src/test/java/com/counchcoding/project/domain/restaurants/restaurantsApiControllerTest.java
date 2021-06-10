@@ -49,8 +49,8 @@ public class restaurantsApiControllerTest {
     public void restaurants_enroll_test(){
         String name = "자연식당";
         String address = "주소";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -60,15 +60,15 @@ public class restaurantsApiControllerTest {
         categoriesRepository.save(categories);
 
 
-        Long categoriesId = categories.getId();
+        Long categoryId = categories.getId();
 
         RestaurantsRequestSaveDto requestSaveDto =
                 RestaurantsRequestSaveDto.builder()
                         .name(name)
                         .address(address)
-                        .visit_date(visit_date)
-                        .star_rate(star_rate)
-                        .categoriesId(categoriesId)
+                        .visitDate(visitDate)
+                        .starRate(starRate)
+                        .categoryId(categoryId)
                         .memo(memo)
                         .build();
 
@@ -83,7 +83,7 @@ public class restaurantsApiControllerTest {
         List<Restaurants> restaurantsList = restaurantsRepository.findAll();
 
         assertThat(restaurantsList.get(0).getName()).isEqualTo(name);
-        assertThat(restaurantsList.get(0).getStar_rate()).isEqualTo(star_rate);
+        assertThat(restaurantsList.get(0).getStarRate()).isEqualTo(starRate);
 
     }
 
@@ -91,8 +91,8 @@ public class restaurantsApiControllerTest {
     public void restaurants_delete_test(){
         String name = "자연식당";
         String address = "주소";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -102,8 +102,8 @@ public class restaurantsApiControllerTest {
         Long removeId = restaurantsRepository.save(Restaurants.builder()
                 .name(name)
                 .address(address)
-                .visit_date(visit_date)
-                .star_rate(star_rate)
+                .visitDate(visitDate)
+                .starRate(starRate)
                 .memo(memo)
                 .category(categories)
                 .build()).getId();
@@ -125,8 +125,8 @@ public class restaurantsApiControllerTest {
     public void restaurants_Search_test(){
         String name = "store";
         String address = "suwon";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -136,8 +136,8 @@ public class restaurantsApiControllerTest {
         restaurantsRepository.save(Restaurants.builder()
                 .name(name)
                 .address(address)
-                .visit_date(visit_date)
-                .star_rate(star_rate)
+                .visitDate(visitDate)
+                .starRate(starRate)
                 .memo(memo)
                 .category(categories)
                 .build());
@@ -167,8 +167,8 @@ public class restaurantsApiControllerTest {
     public void restaurants_findAll_test(){
         String name = "store";
         String address = "suwon";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -178,8 +178,8 @@ public class restaurantsApiControllerTest {
         restaurantsRepository.save(Restaurants.builder()
                 .name(name)
                 .address(address)
-                .visit_date(visit_date)
-                .star_rate(star_rate)
+                .visitDate(visitDate)
+                .starRate(starRate)
                 .memo(memo)
                 .category(categories)
                 .build());
@@ -204,8 +204,8 @@ public class restaurantsApiControllerTest {
     public void restaurants_findId_test(){
         String name = "store";
         String address = "suwon";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -216,8 +216,8 @@ public class restaurantsApiControllerTest {
                 restaurantsRepository.save(Restaurants.builder()
                         .name(name)
                         .address(address)
-                        .visit_date(visit_date)
-                        .star_rate(star_rate)
+                        .visitDate(visitDate)
+                        .starRate(starRate)
                         .memo(memo)
                         .category(categories)
                         .build());
@@ -232,7 +232,7 @@ public class restaurantsApiControllerTest {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody().getName()).isEqualTo(name);
-        assertThat(responseEntity.getBody().getStar_rate()).isEqualTo(star_rate);
+        assertThat(responseEntity.getBody().getStarRate()).isEqualTo(starRate);
 
     }
 
@@ -242,8 +242,8 @@ public class restaurantsApiControllerTest {
         //기본 Restaurants 컬럼 선언
         String name = "store";
         String address = "suwon";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 3.5f;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
         String memo = null;
         Categories categories = Categories.builder()
                 .name("한식")
@@ -254,8 +254,8 @@ public class restaurantsApiControllerTest {
                 restaurantsRepository.save(Restaurants.builder()
                         .name(name)
                         .address(address)
-                        .visit_date(visit_date)
-                        .star_rate(star_rate)
+                        .visitDate(visitDate)
+                        .starRate(starRate)
                         .memo(memo)
                         .category(categories)
                         .build());

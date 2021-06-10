@@ -30,15 +30,15 @@ public class RestaurantsRepositoryTest {
     public void load_restaurants(){
         String name = "자연식당";
         String address = "주소";
-        LocalDate visit_date = LocalDate.now();
-        float star_rate = 2.5F;
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 2.5F;
 
 
         restaurantsRepository.save(Restaurants.builder()
                 .name(name)
                 .address(address)
-                .visit_date(visit_date)
-                .star_rate(star_rate)
+                .visitDate(visitDate)
+                .starRate(starRate)
                 .build());
 
         List<Restaurants> restaurantsList = restaurantsRepository.findAll();
@@ -47,7 +47,7 @@ public class RestaurantsRepositoryTest {
 
         assertThat(restaurants.getName()).isEqualTo(name);
         assertThat(restaurants.getAddress()).isEqualTo(address);
-        assertThat(restaurants.getStar_rate()).isEqualTo(star_rate);
+        assertThat(restaurants.getStarRate()).isEqualTo(starRate);
 
 
     }
