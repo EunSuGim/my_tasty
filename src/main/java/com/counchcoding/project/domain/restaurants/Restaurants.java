@@ -34,10 +34,10 @@ public class Restaurants extends BaseTimeEntity {
     private String address;
 
     @Column(nullable = false)
-    private Float star_rate;
+    private Float starRate;
 
     @Column(nullable = false)
-    private LocalDate visit_date;
+    private LocalDate visitDate;
 
     @Column(nullable = true, length = 500)
     private String memo;
@@ -45,12 +45,12 @@ public class Restaurants extends BaseTimeEntity {
 
     @Builder
     public Restaurants
-            (String name, String address, LocalDate visit_date,
-             Float star_rate,Categories category, String memo){
+            (String name, String address, LocalDate visitDate,
+             Float starRate,Categories category, String memo){
         this.name = name;
         this.address = address;
-        this.visit_date = visit_date;
-        this.star_rate = star_rate;
+        this.visitDate = visitDate;
+        this.starRate = starRate;
         this.category = category;
         this.memo = memo;
     }
@@ -58,8 +58,8 @@ public class Restaurants extends BaseTimeEntity {
     public void update(RestaurantsUpdateRequestDto requestDto, Categories categories){
         this.name = requestDto.getName();
         this.address = requestDto.getAddress();
-        this.visit_date = requestDto.getVisit_date();
-        this.star_rate = requestDto.getStar_rate();
+        this.visitDate = requestDto.getVisitDate();
+        this.starRate = requestDto.getStarRate();
         this.category = categories;
         this.memo = requestDto.getMemo();
     }

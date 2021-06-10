@@ -15,7 +15,7 @@ public class CategoriesApiController {
 
     private final CategoriesService categoriesService;
 
-    @PostMapping("/api/v1/categories")
+    @PostMapping("/api/v1/restaurants-categories")
     public Long save (@RequestBody CategoriesRequestSaveDto requestDto){
         return categoriesService.save(requestDto);
     }

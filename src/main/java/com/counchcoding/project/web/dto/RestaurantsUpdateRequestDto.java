@@ -11,23 +11,22 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RestaurantsUpdateRequestDto {
 
-    //ToDo: 업데이트할 Restaurants 컬럼 선언
     String name;
     String address;
-    LocalDate visit_date;
-    float star_rate;
-    Long categoriesId;
+    LocalDate visitDate;
+    float starRate;
+    Long categoryId;
     String memo;
 
     @Builder
     public RestaurantsUpdateRequestDto(
-            String name, String address, LocalDate visit_date,
-            float star_rate, Long categoriesId, String memo){
+            String name, String address, LocalDate visitDate,
+            float starRate, Long categoryId, String memo){
         this.name = name;
         this.address = address;
-        this.visit_date = visit_date;
-        this.star_rate = star_rate;
-        this.categoriesId = categoriesId;
+        this.visitDate = visitDate;
+        this.starRate = starRate;
+        this.categoryId = categoryId;
         this.memo = memo;
     }
 

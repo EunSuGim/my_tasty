@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +22,7 @@ public class RestaurantsService {
     private final CategoriesService categoriesService;
 
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
-        Categories categories = categoriesService.findById(requestSaveDto.getCategoriesId());
+        Categories categories = categoriesService.findById(requestSaveDto.getCategoryId());
         return restaurantsRepository.save(requestSaveDto.toEntity(categories)).getId();
     }
 
@@ -60,9 +61,9 @@ public class RestaurantsService {
                 restaurantsRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 가게 정보가 없습니다."));
 
-        Categories categories = categoriesService.findById(requestDto.getCategoriesId());
 
-        restaurants.update(requestDto,categories);
+
+        restaurants.update(requestDto,restaurants.getCategory());
         return id;
 
     }

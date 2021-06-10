@@ -14,21 +14,21 @@ import java.util.Date;
 public class RestaurantsRequestSaveDto {
     private String name;
     private String address;
-    private LocalDate visit_date;
-    private float star_rate;
+    private LocalDate visitDate;
+    private float starRate;
     private String memo;
-    private Long categoriesId;
+    private Long categoryId;
 
     @Builder
     public RestaurantsRequestSaveDto
-            (String name, String address, LocalDate visit_date,
-             float star_rate, Long categoriesId, String memo)
+            (String name, String address, LocalDate visitDate,
+             float starRate, Long categoryId, String memo)
     {
         this.name = name;
         this.address = address;
-        this.visit_date = visit_date;
-        this.star_rate = star_rate;
-        this.categoriesId = categoriesId;
+        this.visitDate = visitDate;
+        this.starRate = starRate;
+        this.categoryId = categoryId;
         this.memo = memo;
     }
 
@@ -36,8 +36,8 @@ public class RestaurantsRequestSaveDto {
         return Restaurants.builder()
                 .name(name)
                 .address(address)
-                .visit_date(visit_date)
-                .star_rate(star_rate)
+                .visitDate(visitDate)
+                .starRate(starRate)
                 .category(categories)
                 .memo(memo)
                 .build();
