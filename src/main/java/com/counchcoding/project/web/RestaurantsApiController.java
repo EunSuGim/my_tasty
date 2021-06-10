@@ -29,26 +29,22 @@ public class RestaurantsApiController {
         restaurantsService.delete(id);
     }
 
-    //ToDo: 가게이름 및 주소 검색
-    @GetMapping("/api/v1/restaurants/")
+
+    @GetMapping("/api/v1/restaurants")
     public List<Restaurants> findByNameOrAddress(
             @RequestParam(value="name", required = false) String name,
             @RequestParam(value = "address", required = false) String address)
     {
-        return restaurantsService.findByNameOrAddress(name, address);
+        return restaurantsService.getList(name, address);
     }
 
-    @GetMapping("/api/v1/restaurants")
-    public List<Restaurants> findAll(){
-        return restaurantsService.findAll();
-    }
 
     @GetMapping("/api/v1/restaurants/{id}")
     public Restaurants findById(@PathVariable Long id){
         return restaurantsService.findById(id);
     }
 
-    //ToDo: Restaurants 업데이트 메소드
+
     @PutMapping("/api/v1/restaurants/{id}")
     public Long update(@PathVariable Long id, @RequestBody RestaurantsUpdateRequestDto requestDto){
         return restaurantsService.update(id,requestDto);

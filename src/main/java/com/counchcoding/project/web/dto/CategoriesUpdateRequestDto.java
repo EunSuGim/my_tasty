@@ -18,6 +18,11 @@ public class CategoriesUpdateRequestDto {
 
     }
 
+    @Builder
+    public CategoriesUpdateRequestDto(String code){
+        this.code = code;
+    }
+
 
 
 

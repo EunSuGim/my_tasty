@@ -2,6 +2,8 @@ package com.counchcoding.project.domain.restaurants;
 
 import com.counchcoding.project.Application;
 import com.counchcoding.project.domain.categories.Categories;
+import com.counchcoding.project.domain.categories.CategoriesRepository;
+import com.counchcoding.project.service.categories.CategoriesService;
 import com.counchcoding.project.web.dto.RestaurantsRequestSaveDto;
 import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import org.junit.Test;
@@ -39,6 +41,9 @@ public class restaurantsApiControllerTest {
     @Autowired
     private RestaurantsRepository restaurantsRepository;
 
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+
 
     @Test
     public void restaurants_enroll_test(){
@@ -47,10 +52,15 @@ public class restaurantsApiControllerTest {
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
+
+        categoriesRepository.save(categories);
+
+
+        Long categoriesId = categories.getId();
 
         RestaurantsRequestSaveDto requestSaveDto =
                 RestaurantsRequestSaveDto.builder()
@@ -58,7 +68,7 @@ public class restaurantsApiControllerTest {
                         .address(address)
                         .visit_date(visit_date)
                         .star_rate(star_rate)
-                        .categories_id(categories_id)
+                        .categoriesId(categoriesId)
                         .memo(memo)
                         .build();
 
@@ -84,7 +94,7 @@ public class restaurantsApiControllerTest {
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
@@ -95,7 +105,7 @@ public class restaurantsApiControllerTest {
                 .visit_date(visit_date)
                 .star_rate(star_rate)
                 .memo(memo)
-                .category_id(categories_id)
+                .category(categories)
                 .build()).getId();
 
         String url = "http://localhost:" + port
@@ -118,7 +128,7 @@ public class restaurantsApiControllerTest {
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
@@ -129,7 +139,7 @@ public class restaurantsApiControllerTest {
                 .visit_date(visit_date)
                 .star_rate(star_rate)
                 .memo(memo)
-                .category_id(categories_id)
+                .category(categories)
                 .build());
 
 
@@ -160,10 +170,21 @@ public class restaurantsApiControllerTest {
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
+
+        restaurantsRepository.save(Restaurants.builder()
+                .name(name)
+                .address(address)
+                .visit_date(visit_date)
+                .star_rate(star_rate)
+                .memo(memo)
+                .category(categories)
+                .build());
+
+
 
         String url = "http://localhost:" + port
                 + "/api/v1/restaurants";
@@ -179,16 +200,14 @@ public class restaurantsApiControllerTest {
 
     }
 
-    //ToDo: ID찾기 테스트메소드
     @Test
     public void restaurants_findId_test(){
-        //ToDo: 기본 Restaurants 컬럼 선언
         String name = "store";
         String address = "suwon";
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
@@ -200,7 +219,7 @@ public class restaurantsApiControllerTest {
                         .visit_date(visit_date)
                         .star_rate(star_rate)
                         .memo(memo)
-                        .category_id(categories_id)
+                        .category(categories)
                         .build());
 
         Long givenDataId = restaurants.getId();
@@ -217,7 +236,7 @@ public class restaurantsApiControllerTest {
 
     }
 
-    //ToDo: 업데이트 test메소드
+
     @Test
     public void restaurants_update_test(){
         //기본 Restaurants 컬럼 선언
@@ -226,7 +245,7 @@ public class restaurantsApiControllerTest {
         LocalDate visit_date = LocalDate.now();
         float star_rate = 3.5f;
         String memo = null;
-        Categories categories_id = Categories.builder()
+        Categories categories = Categories.builder()
                 .name("한식")
                 .code("KOR")
                 .build();
@@ -238,7 +257,7 @@ public class restaurantsApiControllerTest {
                         .visit_date(visit_date)
                         .star_rate(star_rate)
                         .memo(memo)
-                        .category_id(categories_id)
+                        .category(categories)
                         .build());
 
         Long updateId = restaurants.getId();

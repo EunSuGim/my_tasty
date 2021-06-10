@@ -2,6 +2,7 @@ package com.counchcoding.project.domain.restaurants;
 
 import com.counchcoding.project.domain.BaseTimeEntity;
 import com.counchcoding.project.domain.categories.Categories;
+import com.counchcoding.project.domain.categories.CategoriesRepository;
 import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,37 +27,41 @@ public class Restaurants extends BaseTimeEntity {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "categories_id")
-    private Categories category_id;
+    @JoinColumn(name = "categories")
+    private Categories category;
 
     @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)
-    private float star_rate;
+    private Float star_rate;
 
-    //ToDo: 날짜만 표기여서 LocalDate
     @Column(nullable = false)
     private LocalDate visit_date;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 500)
     private String memo;
 
 
     @Builder
     public Restaurants
             (String name, String address, LocalDate visit_date,
-             float star_rate,Categories category_id, String memo){
+             Float star_rate,Categories category, String memo){
         this.name = name;
         this.address = address;
         this.visit_date = visit_date;
         this.star_rate = star_rate;
-        this.category_id = category_id;
+        this.category = category;
         this.memo = memo;
     }
 
-    public void update(Long id, RestaurantsUpdateRequestDto requestDto){
+    public void update(RestaurantsUpdateRequestDto requestDto, Categories categories){
         this.name = requestDto.getName();
+        this.address = requestDto.getAddress();
+        this.visit_date = requestDto.getVisit_date();
+        this.star_rate = requestDto.getStar_rate();
+        this.category = categories;
+        this.memo = requestDto.getMemo();
     }
 
 }
