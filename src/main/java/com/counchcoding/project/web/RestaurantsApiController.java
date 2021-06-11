@@ -21,8 +21,8 @@ public class RestaurantsApiController {
 
     /**
      *
-     * @param requestSaveDto
-     * @return
+     * @param requestSaveDto 등록할 내용
+     * @return 등록한 정보
      */
     @PostMapping("/api/v1/restaurants")
     public Long save(@RequestBody RestaurantsRequestSaveDto requestSaveDto){
@@ -43,7 +43,7 @@ public class RestaurantsApiController {
      *
      * @param name
      * @param address
-     * @return
+     * @return 검색 정보
      */
     @GetMapping("/api/v1/restaurants")
     public List<Restaurants> findByNameOrAddress(

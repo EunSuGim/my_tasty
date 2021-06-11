@@ -21,13 +21,18 @@ public class RestaurantsService {
     private final RestaurantsRepository restaurantsRepository;
     private final CategoriesService categoriesService;
 
+    /**
+     * 등록 메소드
+     * @param requestSaveDto 등록할 내용
+     * @return
+     */
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
         Categories categories = categoriesService.findById(requestSaveDto.getCategoryId());
         return restaurantsRepository.save(requestSaveDto.toEntity(categories)).getId();
     }
 
     /**
-     *
+     * 삭제 메소드
      * @param id
      */
     @Transactional
@@ -39,10 +44,10 @@ public class RestaurantsService {
     }
 
     /**
-     *
-     * @param name
-     * @param address
-     * @return
+     * 검색 메소드
+     * @param name 식당이름
+     * @param address 주소
+     * @return 조건에 맞는 식당정보
      */
     public List<Restaurants> getList(String name, String address){
 
@@ -58,7 +63,7 @@ public class RestaurantsService {
     }
 
     /**
-     *
+     * 식당 ID값 검색메소드
      * @param id
      * @return
      */
@@ -69,9 +74,9 @@ public class RestaurantsService {
     }
 
     /**
-     *
+     * 업데이트 메소드
      * @param id
-     * @param requestDto
+     * @param requestDto 수정할 내용
      * @return
      */
     @Transactional
@@ -79,8 +84,6 @@ public class RestaurantsService {
         Restaurants restaurants =
                 restaurantsRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 가게 정보가 없습니다."));
-
-
 
         restaurants.update(requestDto,restaurants.getCategory());
         return id;
