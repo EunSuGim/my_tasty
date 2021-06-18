@@ -27,7 +27,7 @@ public class Restaurants extends BaseTimeEntity {
     private String name;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "categories_id")
     private Categories category;
 
