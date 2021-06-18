@@ -16,13 +16,14 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "restaurants")
 public class Restaurants extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
 
@@ -30,16 +31,16 @@ public class Restaurants extends BaseTimeEntity {
     @JoinColumn(name = "categories")
     private Categories category;
 
-    @Column(nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column(name = "star_rate", nullable = false)
     private Float starRate;
 
-    @Column(nullable = false)
+    @Column(name = "visit_date", nullable = false)
     private LocalDate visitDate;
 
-    @Column(nullable = true, length = 500)
+    @Column(name = "memo", nullable = true, length = 500)
     private String memo;
 
 
