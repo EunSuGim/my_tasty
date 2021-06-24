@@ -7,12 +7,14 @@ import com.counchcoding.project.web.dto.RestaurantsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
@@ -27,13 +29,13 @@ public class Restaurants extends BaseTimeEntity {
     private String name;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categories_id", insertable = false, updatable = false, nullable = false)
-    private Categories category;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "categories_id")
+    private Categories categoriesId;
 
-    public Long getCategories(){
-        return category.getId();
-    }
+//    public Long getCategories(){
+//        return categories.getId();
+//    }
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -51,21 +53,21 @@ public class Restaurants extends BaseTimeEntity {
     @Builder
     public Restaurants
             (String name, String address, LocalDate visitDate,
-             Float starRate,Categories category, String memo){
+             Float starRate,Categories categoriesId, String memo){
         this.name = name;
         this.address = address;
         this.visitDate = visitDate;
         this.starRate = starRate;
-        this.category = category;
+        this.categoriesId = categoriesId;
         this.memo = memo;
     }
 
-    public void update(RestaurantsUpdateRequestDto requestDto, Categories categories){
+    public void update(RestaurantsUpdateRequestDto requestDto, Categories categoriesId){
         this.name = requestDto.getName();
         this.address = requestDto.getAddress();
         this.visitDate = requestDto.getVisitDate();
         this.starRate = requestDto.getStarRate();
-        this.category = categories;
+        this.categoriesId = categoriesId;
         this.memo = requestDto.getMemo();
     }
 

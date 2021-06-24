@@ -17,28 +17,28 @@ public class RestaurantsRequestSaveDto {
     private LocalDate visitDate;
     private float starRate;
     private String memo;
-    private Long categoryId;
+    private Long categoriesId;
 
     @Builder
     public RestaurantsRequestSaveDto
             (String name, String address, LocalDate visitDate,
-             float starRate, Long categoryId, String memo)
+             float starRate, Long categoriesId, String memo)
     {
         this.name = name;
         this.address = address;
         this.visitDate = visitDate;
         this.starRate = starRate;
-        this.categoryId = categoryId;
+        this.categoriesId = categoriesId;
         this.memo = memo;
     }
 
-    public Restaurants toEntity(Categories categories){
+    public Restaurants toEntity(Categories categoriesId){
         return Restaurants.builder()
                 .name(name)
                 .address(address)
                 .visitDate(visitDate)
                 .starRate(starRate)
-                .category(categories)
+                .categoriesId(categoriesId)
                 .memo(memo)
                 .build();
     }

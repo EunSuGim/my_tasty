@@ -4,13 +4,14 @@ import com.counchcoding.project.web.dto.CategoriesUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name="categories")
 public class Categories {
 
     @Id

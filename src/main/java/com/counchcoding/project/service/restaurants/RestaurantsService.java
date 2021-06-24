@@ -27,7 +27,7 @@ public class RestaurantsService {
      * @return
      */
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
-        Categories categories = categoriesService.findById(requestSaveDto.getCategoryId());
+        Categories categories = categoriesService.findById(requestSaveDto.getCategoriesId());
         return restaurantsRepository.save(requestSaveDto.toEntity(categories)).getId();
     }
 
@@ -85,7 +85,7 @@ public class RestaurantsService {
                 restaurantsRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 가게 정보가 없습니다."));
 
-        restaurants.update(requestDto,restaurants.getCategory());
+        restaurants.update(requestDto,restaurants.getCategoriesId());
         return id;
 
     }

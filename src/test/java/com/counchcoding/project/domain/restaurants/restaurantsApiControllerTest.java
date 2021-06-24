@@ -46,6 +46,32 @@ public class restaurantsApiControllerTest {
 
 
     @Test
+    public void retaurants_enroll_test2(){
+        String name = "자연식당";
+        String address = "주소";
+        LocalDate visitDate = LocalDate.now();
+        float starRate = 3.5f;
+        String memo = null;
+
+        Categories categories = new Categories();
+
+        categories.setCode("KOR");
+        categories.setName("한식");
+        categoriesRepository.save(categories);
+
+
+        Restaurants restaurants = new Restaurants();
+        restaurants.setName(name);
+        restaurants.setAddress(address);
+        restaurants.setMemo(memo);
+        restaurants.setCategoriesId(categories);
+        restaurants.setStarRate(starRate);
+        restaurants.setVisitDate(visitDate);
+        restaurantsRepository.save(restaurants);
+
+    }
+
+    @Test
     public void restaurants_enroll_test(){
         String name = "자연식당";
         String address = "주소";
@@ -60,7 +86,7 @@ public class restaurantsApiControllerTest {
         categoriesRepository.save(categories);
 
 
-        Long categoryId = categories.getId();
+        Long categoriesId = categories.getId();
 
         RestaurantsRequestSaveDto requestSaveDto =
                 RestaurantsRequestSaveDto.builder()
@@ -68,7 +94,7 @@ public class restaurantsApiControllerTest {
                         .address(address)
                         .visitDate(visitDate)
                         .starRate(starRate)
-                        .categoryId(categoryId)
+                        .categoriesId(categoriesId)
                         .memo(memo)
                         .build();
 
@@ -105,7 +131,7 @@ public class restaurantsApiControllerTest {
                 .visitDate(visitDate)
                 .starRate(starRate)
                 .memo(memo)
-                .category(categories)
+                .categoriesId(categories)
                 .build()).getId();
 
         String url = "http://localhost:" + port
@@ -139,7 +165,7 @@ public class restaurantsApiControllerTest {
                 .visitDate(visitDate)
                 .starRate(starRate)
                 .memo(memo)
-                .category(categories)
+                .categoriesId(categories)
                 .build());
 
 
@@ -181,7 +207,7 @@ public class restaurantsApiControllerTest {
                 .visitDate(visitDate)
                 .starRate(starRate)
                 .memo(memo)
-                .category(categories)
+                .categoriesId(categories)
                 .build());
 
 
@@ -219,7 +245,7 @@ public class restaurantsApiControllerTest {
                         .visitDate(visitDate)
                         .starRate(starRate)
                         .memo(memo)
-                        .category(categories)
+                        .categoriesId(categories)
                         .build());
 
         Long givenDataId = restaurants.getId();
@@ -257,7 +283,7 @@ public class restaurantsApiControllerTest {
                         .visitDate(visitDate)
                         .starRate(starRate)
                         .memo(memo)
-                        .category(categories)
+                        .categoriesId(categories)
                         .build());
 
         Long updateId = restaurants.getId();
