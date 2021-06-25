@@ -20,13 +20,14 @@ import java.util.Objects;
 public class RestaurantsService {
     private final RestaurantsRepository restaurantsRepository;
     private final CategoriesService categoriesService;
-
+    private final CategoriesRepository categoriesRepository;
     /**
      * 등록 메소드
      * @param requestSaveDto 등록할 내용
      * @return
      */
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
+
         Categories categories = categoriesService.findById(requestSaveDto.getCategoriesId());
         return restaurantsRepository.save(requestSaveDto.toEntity(categories)).getId();
     }
