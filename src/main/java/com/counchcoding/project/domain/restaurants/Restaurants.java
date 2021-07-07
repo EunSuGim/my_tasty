@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -63,12 +64,20 @@ public class Restaurants extends BaseTimeEntity {
     }
 
     public void update(RestaurantsUpdateRequestDto requestDto, Categories categoriesId){
-        this.name = requestDto.getName();
-        this.address = requestDto.getAddress();
-        this.visitDate = requestDto.getVisitDate();
-        this.starRate = requestDto.getStarRate();
-        this.categoriesId = categoriesId;
-        this.memo = requestDto.getMemo();
+
+
+        if(!Objects.isNull(name)&&!Objects.isNull(address)&&!Objects.isNull(visitDate)&&!Objects.isNull(starRate)
+                &&!Objects.isNull(this.categoriesId)&&!Objects.isNull(address)){
+
+            this.name = requestDto.getName();
+            this.address = requestDto.getAddress();
+            this.visitDate = requestDto.getVisitDate();
+            this.starRate = requestDto.getStarRate();
+            this.categoriesId = categoriesId;
+            this.memo = requestDto.getMemo();
+
+        }
+
     }
 
 }
