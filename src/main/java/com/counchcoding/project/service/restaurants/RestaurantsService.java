@@ -28,6 +28,8 @@ public class RestaurantsService {
      */
     public Long save (RestaurantsRequestSaveDto requestSaveDto){
 
+        System.out.println("@@@@@@@@@@");
+
         System.out.println("@@@@@@@@@@@"+requestSaveDto.toString());
         System.out.println("@@@@@@@@@@@@@@"+requestSaveDto.getCategoriesId());
         Categories categories = categoriesService.findById(requestSaveDto.getCategoriesId());
