@@ -30,7 +30,7 @@ public class Restaurants extends BaseTimeEntity {
 
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "CATEGORIES_ID")
     private Categories categoriesId;
 
 //    public Long getCategories(){
